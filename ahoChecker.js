@@ -1,13 +1,25 @@
+// 既存のplayScratchTTSはそのまま利用
 function playScratchTTS(text, pitch = 1.0) {
   const encodedText = encodeURIComponent(text);
   const url = `https://synthesis-service.scratch.mit.edu/synth?locale=ja-JP&gender=female&text=${encodedText}`;
 
   const audio = new Audio(url);
   audio.preservesPitch = false;
-  audio.playbackRate = pitch; // 1.0 = 普通、2.0 = 高い声（アホ時用）
+  audio.playbackRate = pitch;
   audio.play();
 }
 
+// URLパラメータから値を取得する関数
+function getParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    num: params.get("num"),
+    multiple: params.get("multiple") === "true",
+    includes: params.get("includes") === "true"
+  };
+}
+
+// 判定＆結果生成関数
 function checkAho(number, multiple, includes) {
   if (!multiple && !includes) {
     return {
@@ -52,3 +64,17 @@ function checkAho(number, multiple, includes) {
     isAho
   };
 }
+
+// ページ読み込み時の処理
+window.addEventListener("DOMContentLoaded", () => {
+  const { num, multiple, includes } = getParams();
+  const number = Number(num);
+
+  const result = checkAho(number, multiple, includes);
+
+  // 結果表示用の要素はresult.htmlに用意しておくこと！
+  document.getElementById("result").textContent = result.speechText;
+  document.getElementById("reason").textContent = result.reasonText;
+
+  playScratchTTS(result.speechText, result.isAho ? 2.0 : 1.0);
+});
