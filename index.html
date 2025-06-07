@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head><meta charset="UTF-8"><title>ナベアツ判定 - 入力</title></head>
+<head>
+  <meta charset="UTF-8">
+  <title>ナベアツ判定 - 入力</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <h1>ナベアツがアホになるかを判定するツール</h1>
+  <div class="container">
+    <h1>ナベアツがアホになるかを判定するツール</h1>
 
-  <div>
-    <label><input type="checkbox" id="checkMultiple"> 3の倍数</label>
-    <label><input type="checkbox" id="checkIncludes"> 3がつく数字</label>
+    <div>
+      <label><input type="checkbox" id="checkMultiple"> 3の倍数</label>
+      <label><input type="checkbox" id="checkIncludes"> 3がつく数字</label>
+    </div>
+
+    <input type="number" id="numberInput" placeholder="数字を入力">
+
+    <button onclick="goResult()">判定する</button>
   </div>
-
-  <input type="number" id="numberInput" placeholder="数字を入力">
-
-  <button onclick="goResult()">判定する</button>
 
   <script>
     function goResult() {
@@ -34,7 +40,6 @@
         includes
       });
 
-      // result.htmlにパラメータ付きで移動
       window.location.href = "result.html?" + params.toString();
     }
   </script>
