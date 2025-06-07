@@ -1,11 +1,17 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #fffdee;
-  color: #333;
-  text-align: center;
-  margin-top: 80px;  /* 少し縦を大きく */
-  margin-left: 20px; /* 横の余白を少し追加 */
-  margin-right: 20px;
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('ahonabe.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
 }
 
 .container {
