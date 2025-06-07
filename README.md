@@ -14,7 +14,7 @@
 
 ---
 
-# World Nabeatsu Checker
+# Sekaino Nabeatsu Checker
 
 This web app is a fun tool inspired by the famous "Sekai no Nabeatsu" comedy routine.  
 It judges whether a number "becomes foolish" if it's a multiple of 3 or contains the digit "3", and uses speech synthesis to read the number aloud.
