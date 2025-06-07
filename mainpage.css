@@ -15,6 +15,7 @@ body {
 }
 
 .container {
+  position: relative; /* 背景の上に表示されるように */
   max-width: 600px; /* 500→600に拡大 */
   margin: auto;
   padding: 30px; /* 20→30に拡大 */
@@ -24,12 +25,14 @@ body {
 }
 
 input {
+  position: relative; /* 背景の上に表示されるように */
   padding: 12px; /* 少し大きく */
   font-size: 18px; /* 少し大きく */
   width: 240px;    /* 少し幅を広げる */
 }
 
 button {
+  position: relative; /* 背景の上に表示されるように */
   padding: 12px 24px; /* 少し大きく */
   font-size: 18px;    /* 少し大きく */
   margin-left: 15px;  /* 少し広げる */
@@ -40,10 +43,12 @@ button {
 }
 
 button:hover {
+  position: relative; /* 背景の上に表示されるように */
   background-color: #ff9900;
 }
 
 .result {
+  position: relative; /* 背景の上に表示されるように */
   margin-top: 25px;
   font-size: 22px;
   font-weight: bold;
