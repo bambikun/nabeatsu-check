@@ -1,58 +1,42 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <title>ナベアツ判定 - 結果</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin-top: 5em;
-      background-color: #fff8f8;
-    }
-    #result {
-      font-size: 4em;
-      font-weight: bold;
-      color: #e60000;
-    }
-    #back {
-      margin-top: 2em;
-      font-size: 1.2em;
-    }
-  </style>
-</head>
-<body>
-  <div id="result"></div>
-  <button id="back" onclick="history.back()">戻る</button>
+<script>
+  // ...既存の判定処理のあとに追加
 
-  <script>
-    // URLパラメータ取得
-    const params = new URLSearchParams(window.location.search);
-    const num = params.get("num");
-    const multiple = params.get("multiple") === "true";
-    const includes = params.get("includes") === "true";
+  // 判定結果のテキストを作成
+  let speechText = "";
+  if (!multiple && !includes) {
+    speechText = "どちらかの判定基準を選択してください。";
+  } else if (isNaN(number)) {
+    speechText = "数字を正しく入力してください。";
+  } else if (isAho) {
+    speechText = `${number} はアホになる！`;
+  } else {
+    speechText = `${number} は普通です。`;
+  }
 
-    const number = parseInt(num, 10);
-    const isMultipleOfThree = number % 3 === 0;
-    const includesThree = num.includes("3");
+  // Scratch合成音声API用URL生成
+  const baseApiUrl = "https://synthesis-service.scratch.mit.edu/synth";
+  const locale = "ja-JP";
+  const gender = "female";
+  const textParam = encodeURIComponent(speechText);
+  const apiUrl = `${baseApiUrl}?locale=${locale}&gender=${gender}&text=${textParam}`;
 
-    // 判定
-    const isAho = (multiple && isMultipleOfThree) || (includes && includesThree);
+  // 音声再生関数
+  function playSpeech(url, isAho) {
+    const audio = new Audio(url);
+    // アホになる時は少しピッチ(再生速度)を上げる（例: 1.3倍速）
+    audio.playbackRate = isAho ? 1.3 : 1.0;
 
-    const resultDiv = document.getElementById("result");
-    if (!multiple && !includes) {
-      resultDiv.textContent = "どちらかの判定基準を選択してください。";
-      resultDiv.style.color = "#cc0000";
-    } else if (isNaN(number)) {
-      resultDiv.textContent = "数字を正しく入力してください。";
-      resultDiv.style.color = "#cc0000";
-    } else if (isAho) {
-      resultDiv.textContent = `${number} → アホになる！🤣`;
-      resultDiv.style.color = "#e60000";
-    } else {
-      resultDiv.textContent = `${number} → 普通です。`;
-      resultDiv.style.color = "#333333";
-    }
-  </script>
-</body>
-</html>
+    audio.oncanplaythrough = () => {
+      audio.play();
+    };
+
+    audio.onerror = () => {
+      console.warn("音声の読み込みに失敗しました。");
+    };
+  }
+
+  // 自動再生（ユーザー操作後でないとブラウザで制限される場合あり）
+  window.onload = () => {
+    playSpeech(apiUrl, isAho);
+  };
+</script>
