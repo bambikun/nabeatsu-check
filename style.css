@@ -10,6 +10,7 @@ body {
 
 /* 背景画像は ::before で表示する */
 body::before {
+  position: relative; /* 背景の上に表示されるように */
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -23,6 +24,7 @@ body::before {
 
 
 .container {
+  position: relative; /* 背景の上に表示されるように */
   max-width: 500px;
   margin: auto;
   padding: 20px;
@@ -32,12 +34,14 @@ body::before {
 }
 
 input {
+  position: relative; /* 背景の上に表示されるように */
   padding: 10px;
   font-size: 16px;
   width: 200px;
 }
 
 button {
+  position: relative; /* 背景の上に表示されるように */
   padding: 10px 20px;
   font-size: 16px;
   margin-left: 10px;
@@ -48,10 +52,12 @@ button {
 }
 
 button:hover {
+  position: relative; /* 背景の上に表示されるように */
   background-color: #ff9900;
 }
 
 .result {
+  position: relative; /* 背景の上に表示されるように */
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
