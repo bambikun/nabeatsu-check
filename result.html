@@ -1,5 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <script>
+    // 1. setBackground関数の定義
+function setBackground(imageFileName) {
+  document.body.style.setProperty('--bg-image', `url('${imageFileName}')`);
+}
+
+// 2. ページ読み込み時の処理内で呼び出す
+window.addEventListener("DOMContentLoaded", () => {
+  const { num, multiple, includes } = getParams();
+  const number = Number(num);
+
+  const result = checkAho(number, multiple, includes);
+
+  document.getElementById("result").textContent = result.speechText;
+  document.getElementById("reason").textContent = result.reasonText;
+
+  if (result.isAho) {
+    playScratchTTS(num, 2.0, "female");
+    setBackground('ahonabe.png');  // アホ背景
+  } else {
+    playScratchTTS(num, 1.0, "male");
+    setBackground('normalnabe.png'); // 通常背景
+  }
+});
+</script>
+
 <head>
   <meta charset="UTF-8">
   <title>ナベアツ判定 - 結果</title>
@@ -7,6 +33,23 @@
 </head>
 <body>
   <div class="container">
+    <script>
+    function setBackground(imageFileName) {
+      document.body.style.setProperty('--bg-image', `url('${imageFileName}')`);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+    // 省略: パラメータ取得・判定処理
+
+      if (result.isAho) {
+        setBackground('ahonabe.png');
+      } else {
+        setBackground('normalnabe.png');
+      }
+    });
+    </script>
+
+      
     <h1>判定結果</h1>
     <div id="result" class="result"></div>
     <div id="reason" style="margin-top:10px; font-size:16px; color:#555;"></div>
