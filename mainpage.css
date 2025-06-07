@@ -1,0 +1,44 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fffdee;
+  color: #333;
+  text-align: center;
+  margin-top: 80px;  /* 少し縦を大きく */
+  margin-left: 20px; /* 横の余白を少し追加 */
+  margin-right: 20px;
+}
+
+.container {
+  max-width: 600px; /* 500→600に拡大 */
+  margin: auto;
+  padding: 30px; /* 20→30に拡大 */
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  background: #f9f9f9;
+}
+
+input {
+  padding: 12px; /* 少し大きく */
+  font-size: 18px; /* 少し大きく */
+  width: 240px;    /* 少し幅を広げる */
+}
+
+button {
+  padding: 12px 24px; /* 少し大きく */
+  font-size: 18px;    /* 少し大きく */
+  margin-left: 15px;  /* 少し広げる */
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff9900;
+}
+
+.result {
+  margin-top: 25px;
+  font-size: 22px;
+  font-weight: bold;
+}
