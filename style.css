@@ -1,4 +1,15 @@
 body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fffdee;
+  color: #333;
+  text-align: center;
+  margin-top: 50px;
+  position: relative; /* 背景用疑似要素のために relative に */
+  overflow: hidden;   /* 背景がはみ出さないように */
+}
+
+/* 背景画像は ::before で表示する */
+body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
