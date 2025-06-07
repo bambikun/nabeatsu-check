@@ -1,42 +1,18 @@
-<script>
-  // ...既存の判定処理のあとに追加
+// 判定結果テキストを作成
+let speechText = "";
+if (!multiple && !includes) {
+  speechText = "どちらかの判定基準を選択してください。";
+} else if (isNaN(number)) {
+  speechText = "数字を正しく入力してください。";
+} else if (isAho) {
+  speechText = `${number} はアホになる！`;
+} else {
+  speechText = `${number} は普通です。`;
+}
 
-  // 判定結果のテキストを作成
-  let speechText = "";
-  if (!multiple && !includes) {
-    speechText = "どちらかの判定基準を選択してください。";
-  } else if (isNaN(number)) {
-    speechText = "数字を正しく入力してください。";
-  } else if (isAho) {
-    speechText = `${number} はアホになる！`;
-  } else {
-    speechText = `${number} は普通です。`;
-  }
+// 画面に表示
+document.getElementById("result").textContent = speechText;
 
-  // Scratch合成音声API用URL生成
-  const baseApiUrl = "https://synthesis-service.scratch.mit.edu/synth";
-  const locale = "ja-JP";
-  const gender = "female";
-  const textParam = encodeURIComponent(speechText);
-  const apiUrl = `${baseApiUrl}?locale=${locale}&gender=${gender}&text=${textParam}`;
-
-  // 音声再生関数
-  function playSpeech(url, isAho) {
-    const audio = new Audio(url);
-    // アホになる時は少しピッチ(再生速度)を上げる（例: 1.3倍速）
-    audio.playbackRate = isAho ? 1.3 : 1.0;
-
-    audio.oncanplaythrough = () => {
-      audio.play();
-    };
-
-    audio.onerror = () => {
-      console.warn("音声の読み込みに失敗しました。");
-    };
-  }
-
-  // 自動再生（ユーザー操作後でないとブラウザで制限される場合あり）
-  window.onload = () => {
-    playSpeech(apiUrl, isAho);
-  };
-</script>
+// 音声再生（pitch 2.0はアホになる時）
+const pitch = isAho ? 2.0 : 1.0;
+playScratchTTS(speechText, pitch);
