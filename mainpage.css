@@ -10,11 +10,6 @@ body {
 }
 
 .container {
-  position: relative;
-  z-index: 1;
-}
-
-.container {
   position: relative; /* 背景の上に表示されるように */
   max-width: 600px; /* 500→600に拡大 */
   margin: auto;
