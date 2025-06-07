@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>ナベアツ・アホ判定ツール</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<head><meta charset="UTF-8"><title>ナベアツ判定 - 入力</title></head>
 <body>
-  <div class="container">
-    <h1>ナベアツ・アホ判定ツール</h1>
-    <p>数字を入力して、「アホになる」か判定しよう！</p>
-    <input type="number" id="numberInput" placeholder="数字を入力">
-      <!-- ✅ 追加：チェックボックス -->
-    <div class="checkboxes">
-      <label><input type="checkbox" id="checkMultiple"> 3の倍数</label>
-      <label><input type="checkbox" id="checkIncludes"> 3がつく数字</label>
-    </div>
+  <h1>ナベアツがアホになるかを判定するツール</h1>
 
-    <!-- 既存の数値入力やボタン -->
-    <input type="number" id="numberInput" placeholder="数字を入力">
-    <button onclick="checkNumber()">判定</button>
-    <p id="result"></p>
-
-    <!-- JavaScript はそのままでOK -->
-    <button onclick="checkNumber()">判定する</button>
-    <div id="result" class="result"></div>
+  <div>
+    <label><input type="checkbox" id="checkMultiple"> 3の倍数</label>
+    <label><input type="checkbox" id="checkIncludes"> 3がつく数字</label>
   </div>
-  <script src="script.js"></script>
+
+  <input type="number" id="numberInput" placeholder="数字を入力">
+
+  <button onclick="goResult()">判定する</button>
+
+  <script>
+    function goResult() {
+      const num = document.getElementById("numberInput").value;
+      const multiple = document.getElementById("checkMultiple").checked;
+      const includes = document.getElementById("checkIncludes").checked;
+
+      if (!multiple && !includes) {
+        alert("どちらかの判定基準を選択してください。");
+        return;
+      }
+      if (!num) {
+        alert("数字を入力してください。");
+        return;
+      }
+
+      const params = new URLSearchParams({
+        num,
+        multiple,
+        includes
+      });
+
+      // result.htmlにパラメータ付きで移動
+      window.location.href = "result.html?" + params.toString();
+    }
+  </script>
 </body>
 </html>
