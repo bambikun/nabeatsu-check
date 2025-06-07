@@ -1,0 +1,9 @@
+function playScratchTTS(text, pitch = 1.0) {
+  const encodedText = encodeURIComponent(text);
+  const url = `https://synthesis-service.scratch.mit.edu/synth?locale=ja-JP&gender=female&text=${encodedText}`;
+
+  const audio = new Audio(url);
+  audio.preservesPitch = false;
+  audio.playbackRate = pitch; // 1.0 = 普通、2.0 = 高い声（アホ時用）
+  audio.play();
+}
