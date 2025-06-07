@@ -10,6 +10,18 @@
     <h1>ナベアツ・アホ判定ツール</h1>
     <p>数字を入力して、「アホになる」か判定しよう！</p>
     <input type="number" id="numberInput" placeholder="数字を入力">
+      <!-- ✅ 追加：チェックボックス -->
+    <div class="checkboxes">
+      <label><input type="checkbox" id="checkMultiple"> 3の倍数</label>
+      <label><input type="checkbox" id="checkIncludes"> 3がつく数字</label>
+    </div>
+
+    <!-- 既存の数値入力やボタン -->
+    <input type="number" id="numberInput" placeholder="数字を入力">
+    <button onclick="checkNumber()">判定</button>
+    <p id="result"></p>
+
+    <!-- JavaScript はそのままでOK -->
     <button onclick="checkNumber()">判定する</button>
     <div id="result" class="result"></div>
   </div>
