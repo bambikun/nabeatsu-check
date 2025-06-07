@@ -12,6 +12,8 @@
     <div>
       <label><input type="checkbox" id="checkMultiple"> 3の倍数</label>
       <label><input type="checkbox" id="checkIncludes"> 3がつく数字</label>
+      <label for="targetNumber">条件とする数字（デフォルト: 3）:</label>
+      <input type="number" id="targetNumber" value="3" min="1">
     </div>
 
     <input type="number" id="numberInput" placeholder="数字を入力">
@@ -20,28 +22,31 @@
   </div>
 
   <script>
-    function goResult() {
-      const num = document.getElementById("numberInput").value;
-      const multiple = document.getElementById("checkMultiple").checked;
-      const includes = document.getElementById("checkIncludes").checked;
+  function goResult() {
+    const num = document.getElementById("numberInput").value;
+    const multiple = document.getElementById("checkMultiple").checked;
+    const includes = document.getElementById("checkIncludes").checked;
+    const target = document.getElementById("targetNumber").value || 3;
 
-      if (!multiple && !includes) {
-        alert("どちらかの判定基準を選択してください。");
-        return;
-      }
-      if (!num) {
-        alert("数字を入力してください。");
-        return;
-      }
-
-      const params = new URLSearchParams({
-        num,
-        multiple,
-        includes
-      });
-
-      window.location.href = "result.html?" + params.toString();
+    if (!multiple && !includes) {
+      alert("どちらかの判定基準を選択してください。");
+      return;
     }
+    if (!num) {
+      alert("数字を入力してください。");
+      return;
+    }
+
+    const params = new URLSearchParams({
+      num,
+      multiple,
+      includes,
+      target
+    });
+
+    window.location.href = "result.html?" + params.toString();
+}
+
   </script>
 </body>
 </html>
