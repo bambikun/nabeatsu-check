@@ -1,3 +1,4 @@
+<div id="result" style="font-size: 3em; font-weight: bold; color: #e60000; text-align: center; margin-top: 2em;"></div>
 // 判定結果テキストを作成
 let speechText = "";
 if (!multiple && !includes) {
@@ -16,3 +17,24 @@ document.getElementById("result").textContent = speechText;
 // 音声再生（pitch 2.0はアホになる時）
 const pitch = isAho ? 2.0 : 1.0;
 playScratchTTS(speechText, pitch);
+
+<div id="reason" style="font-size: 1.2em; color: #444; margin-top: 1em; text-align: center;"></div>
+// 条件ごとの判定
+const hitMultiple = multiple && isMultipleOfThree;
+const hitIncludes = includes && includesThree;
+
+let reasonText = "";
+if (isAho) {
+  if (hitMultiple && hitIncludes) {
+    reasonText = "3の倍数の条件でも、3が付く数字の条件でも合致しました。";
+  } else if (hitMultiple) {
+    reasonText = "3の倍数の条件に合致しました。";
+  } else if (hitIncludes) {
+    reasonText = "3が付く数字の条件に合致しました。";
+  }
+} else {
+  reasonText = "どの条件にも合致しませんでした。";
+}
+
+// 画面に表示
+document.getElementById("reason").textContent = reasonText;
