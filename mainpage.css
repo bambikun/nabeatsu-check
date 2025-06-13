@@ -1,19 +1,33 @@
 body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fffdee;
+  color: #333;
+  text-align: center;
+  margin-top: 50px;
+  position: relative; /* 背景用疑似要素のために relative に */
+  overflow: hidden;   /* 背景がはみ出さないように */
+}
+
+/* 背景画像は ::before で表示する */
+body::before {
+  position: relative; /* 背景の上に表示されるように */
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-image: url('ahonabe.png');
-  background-size: 120%;
+  background-image: var(--bg-image, url('normalnabe.png'));
+  background-size: cover;
   background-position: center;
   filter: blur(8px);
   z-index: -1;
+  transition: background-image 0.5s ease;
 }
+
 
 .container {
   position: relative; /* 背景の上に表示されるように */
-  max-width: 600px; /* 500→600に拡大 */
+  max-width: 500px;
   margin: auto;
-  padding: 30px; /* 20→30に拡大 */
+  padding: 20px;
   border: 2px solid #ccc;
   border-radius: 12px;
   background: #f9f9f9;
@@ -21,16 +35,16 @@ body {
 
 input {
   position: relative; /* 背景の上に表示されるように */
-  padding: 12px; /* 少し大きく */
-  font-size: 18px; /* 少し大きく */
-  width: 240px;    /* 少し幅を広げる */
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
 }
 
 button {
   position: relative; /* 背景の上に表示されるように */
-  padding: 12px 24px; /* 少し大きく */
-  font-size: 18px;    /* 少し大きく */
-  margin-left: 15px;  /* 少し広げる */
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
   background-color: #ffcc00;
   border: none;
   border-radius: 6px;
@@ -44,7 +58,7 @@ button:hover {
 
 .result {
   position: relative; /* 背景の上に表示されるように */
-  margin-top: 25px;
-  font-size: 22px;
+  margin-top: 20px;
+  font-size: 20px;
   font-weight: bold;
 }
